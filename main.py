@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, redirect, request, session, url_for
 
 from password_generator import generator
@@ -62,7 +61,10 @@ def generate():
 
 @app.route("/copy/")
 def copy():
-    return "Copy"
+    secure_password = session["secure_password"]
+    pyperclip.copy(secure_password)
+    return redirect(url_for("home"))
+
 
 
 
